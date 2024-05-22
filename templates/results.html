@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    {% if found_in_casa %}
+        <p>Se encontró dentro de La Casa del Electrodoméstico</p>
+    {% else %}
+        <p>No se encontró información de La Casa del Electrodoméstico</p>
+    {% endif %}
+    
+    <ul>
+    {% for result in results %}
+        <li>
+            <strong>{{ result.title }}</strong><br>
+            <img src="{{ result.thumbnail }}" alt="{{ result.title }}" width="100"><br>
+            Google Shopping URL: <a href="{{ result.link }}" target="_blank">{{ result.link }}</a><br>
+            {% if result.product_id %}
+                Product ID: {{ result.product_id }}
+            {% else %}
+                Source: {{ result.source }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <a href="/">Back to search</a>
+</body>
+</html>
